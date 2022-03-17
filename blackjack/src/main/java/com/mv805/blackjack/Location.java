@@ -1,23 +1,28 @@
 package com.mv805.blackjack;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Location {
 
-    LOBBY("L", "Lobby", new String[] { "H", "A", "E" }),
-    ATM("A", "ATM", new String[] { "L" }),
-    HALL("H", "Blackjack Hall", new String[] { "1", "2", "3", "L" }),
-    EXIT("E", "Exit Casino (Quit Game)", new String[] { "1", "2", "3", "L" }),
-    TABLE_ONE("1", "Table One", new String[0]),
-    TABLE_TWO("2", "Table Two", new String[0]),
-    TABLE_THREE("3", "Table Three", new String[0]);
+    LOBBY("L", "Lobby", Arrays.asList("H", "A", "E")),
+    ATM("A", "ATM", Arrays.asList("L")),
+    HALL("H", "Blackjack Hall", Arrays.asList("L")),
+    EXIT("E", "Exit Casino (Quit Game)");
 
     private final String displayName;
     private final String selectionString;
-    private final String[] menuList;
+    private List<String> menuList;
 
-    private Location(String selectionString, String displayName, String[] menuList) {
+    private Location(String selectionString, String displayName, List<String> menuList) {
         this.selectionString = selectionString;
         this.displayName = displayName;
         this.menuList = menuList;
+    }
+
+    private Location(String selectionString, String displayName) {
+        this.selectionString = selectionString;
+        this.displayName = displayName;
     }
 
     public String getDisplayName() {
@@ -28,7 +33,7 @@ public enum Location {
         return selectionString;
     }
 
-    public String[] getMenuList() {
+    public List<String> getMenuList() {
         return menuList;
     }
 
