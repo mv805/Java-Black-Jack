@@ -11,4 +11,6 @@ public abstract class Card {
     public CardType getType() {
         return cardType;
     }
+
+    public abstract String getInfoString();
 }
