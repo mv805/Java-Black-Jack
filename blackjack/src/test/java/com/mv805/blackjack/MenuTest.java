@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,21 +32,21 @@ public class MenuTest {
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "EXIT" })
     void testProcessMenuInput_ShouldExit(Location location) {
-        Menu.processMenuInput(player, location.getSelectionString());
+        MoveMenu.processMenuInput(player, location.getSelectionString());
         assertEquals(PlayerState.EXITING, player.getPlayerState());
     }
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "LOBBY", "ATM", "HALL" })
     void testProcessMenuInput_PlayerShouldMove(Location location) {
-        Menu.processMenuInput(player, location.getSelectionString());
+        MoveMenu.processMenuInput(player, location.getSelectionString());
         assertEquals(PlayerState.MOVING, player.getPlayerState());
     }
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "LOBBY", "ATM", "HALL" })
     void testProcessMenuInput_PlayerShouldRelocate(Location location) {
-        Menu.processMenuInput(player, location.getSelectionString());
+        MoveMenu.processMenuInput(player, location.getSelectionString());
         assertEquals(location, player.getPlayerLocation());
     }
 
@@ -55,8 +57,8 @@ public class MenuTest {
                 "A: ATM\r\n" +
                 "H: Blackjack Hall";
 
-        String[] stringArray = { "L", "A", "H" };
-        Menu.DisplayMenu(stringArray);
+        List<String> stringArray = Arrays.asList("L", "A", "H");
+        MoveMenu.DisplayMenu(stringArray);
         assertEquals(displayAllMenu, outputStreamCaptor.toString().trim());
     }
 
