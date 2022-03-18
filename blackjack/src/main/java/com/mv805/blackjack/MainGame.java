@@ -16,8 +16,8 @@ public class MainGame {
                     break;
                 case MOVING:
                     MoveMenu.DisplayMenu(player);
-                    System.out.println();
-                    MoveMenu.processMenuInput(player, MoveMenu.getMenuInput(player));
+                    String menuChoice = MoveMenu.getMenuInput(player);
+                    MoveMenu.processMenuInput(player, menuChoice);
                     break;
                 case PLAYING:
                     break;
