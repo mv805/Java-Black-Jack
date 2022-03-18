@@ -9,35 +9,30 @@ public class MoveMenu {
 
     public static void DisplayMenu(Player player) {
 
-        try {// try catch for any invalid inputs that arent validated
-            if (player.getPlayerLocation().equals(Location.TABLES)) {
-                for (HallTable table : HallTable.values()) {
-                    System.out.printf("%s: %s-- Min Bet: %d / Max Bet: %d / " +
-                            "Number of Decks used: %d / ",
-                            table.getSelectionString(),
-                            table.getDisplayName(),
-                            table.getTable().getMinBet(),
-                            table.getTable().getMaxBet(),
-                            table.getTable().getNumberOfDecks());
+        if (player.getPlayerLocation().equals(Location.TABLES)) {
+            for (HallTable table : HallTable.values()) {
+                System.out.printf("%s: %s-- Min Bet: %d / Max Bet: %d / " +
+                        "Number of Decks used: %d / ",
+                        table.getSelectionString(),
+                        table.getDisplayName(),
+                        table.getTable().getMinBet(),
+                        table.getTable().getMaxBet(),
+                        table.getTable().getNumberOfDecks());
 
-                    if (table.getTable().ishitOnSoft17()) {
-                        System.out.printf("Dealer hits on soft 17%n");
-                    } else {
-                        System.out.printf("Dealer stands on 17%n");
-                    }
-                }
-                System.out.printf("%s: %s%n", Location.HALL.getSelectionString(), Location.HALL.getDisplayName());
-
-            } else {
-                for (String menuOption : player.getPlayerLocation().getMenuList()) {
-                    System.out.printf("%s: %s%n", Location.getLocation(menuOption).getSelectionString(),
-                            Location.getLocation(menuOption).getDisplayName());
+                if (table.getTable().ishitOnSoft17()) {
+                    System.out.printf("Dealer hits on soft 17%n");
+                } else {
+                    System.out.printf("Dealer stands on 17%n");
                 }
             }
-        } catch (Exception e) {
-            System.out.println(invalidMessage);
-        }
+            System.out.printf("%s: %s%n", Location.HALL.getSelectionString(), Location.HALL.getDisplayName());
 
+        } else {
+            for (String menuOption : player.getPlayerLocation().getMenuList()) {
+                System.out.printf("%s: %s%n", Location.getLocation(menuOption).getSelectionString(),
+                        Location.getLocation(menuOption).getDisplayName());
+            }
+        }
     }
 
     public static String getMenuInput(Player player) {
@@ -48,38 +43,53 @@ public class MoveMenu {
             System.out.print("Make Selection ");
         }
 
-        String choice = scanner.nextLine().toUpperCase().trim().replaceAll("\\s", "");
+        String menuChoice = scanner.nextLine().toUpperCase().trim().replaceAll("\\s", "");
+        return menuChoice;
 
-        if (validateInputCorrect(choice)) {
-            return choice;
-        } else {
-            return null;
-        }
     }
 
     public static void processMenuInput(Player player, String menuChoice) {
-
-        if (menuChoice == null) {
+        if (!validateInputCorrect(menuChoice)) {
             System.out.println(invalidMessage);
-            System.out.println();
+        } else {
+            MoveMenu.movePlayer(player, menuChoice);
+        }
+    }
 
-        } else if (menuChoice.equals(Location.EXIT.getSelectionString())) {
+    private static boolean validateInputCorrect(String input) {
+        // input should come in trimmed and uppercase and no white spaces
+        boolean locationsContainInput = false;
+
+        if (input.isEmpty() || input == null) {
+            return false;
+        }
+        if (input.length() > 1) {
+            return false;
+        }
+
+        for (Location location : Location.values()) {
+            if (location.getSelectionString().equals(input)) {
+                locationsContainInput = true;
+                break;
+            }
+        }
+
+        if (!locationsContainInput) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static void movePlayer(Player player, String menuChoice) {
+
+        if (menuChoice.equals(Location.EXIT.getSelectionString())) {
             player.setPlayerState(PlayerState.EXITING);
 
         } else {
             player.setPlayerLocation(Location.getLocation(menuChoice));
             player.setPlayerState(PlayerState.MOVING);
         }
-    }
-
-    private static boolean validateInputCorrect(String input) {
-
-        if (input.isEmpty() || input == null) {
-            return false;
-        } else if (input.length() > 1) {
-            return false;
-        }
-        return true;
     }
 
 }
