@@ -7,7 +7,7 @@ public enum Location {
 
     LOBBY("L", "Lobby", Arrays.asList("B", "A", "E")),
     ATM("A", "ATM", Arrays.asList("L")),
-    HALL("B", "Blackjack Hall", Arrays.asList("L", "T")),
+    HALL("B", "Blackjack Hall", Arrays.asList("T", "L")),
     TABLES("T", "Blackjack Tables"),
     EXIT("E", "Exit Casino (Quit Game)");
 
