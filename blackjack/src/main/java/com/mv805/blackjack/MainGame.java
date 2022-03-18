@@ -15,7 +15,7 @@ public class MainGame {
                     player.setPlayerState(PlayerState.MOVING);
                     break;
                 case MOVING:
-                    MoveMenu.DisplayMenu(player.getPlayerLocation().getMenuList());
+                    MoveMenu.DisplayMenu(player);
                     System.out.println();
                     MoveMenu.processMenuInput(player, MoveMenu.getMenuInput());
                     break;
