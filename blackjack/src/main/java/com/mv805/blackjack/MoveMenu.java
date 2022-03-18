@@ -36,7 +36,7 @@ public class MoveMenu {
     }
 
     public static String getMenuInput() {
-        System.out.print("Enter Selection:");
+        System.out.print("Where would you like to go? ");
         String choice = scanner.next().toUpperCase();
         return choice;
     }
