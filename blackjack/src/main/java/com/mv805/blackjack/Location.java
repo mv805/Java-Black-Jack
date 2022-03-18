@@ -5,9 +5,10 @@ import java.util.List;
 
 public enum Location {
 
-    LOBBY("L", "Lobby", Arrays.asList("H", "A", "E")),
+    LOBBY("L", "Lobby", Arrays.asList("B", "A", "E")),
     ATM("A", "ATM", Arrays.asList("L")),
-    HALL("H", "Blackjack Hall", Arrays.asList("L")),
+    HALL("B", "Blackjack Hall", Arrays.asList("L", "T")),
+    TABLES("T", "Blackjack Tables"),
     EXIT("E", "Exit Casino (Quit Game)");
 
     private final String displayName;
