@@ -37,12 +37,7 @@ public class MoveMenu {
 
     public static String getMenuInput(Player player) {
 
-        if (player.getPlayerState().equals(PlayerState.MOVING)) {
-            System.out.print("Where would you like to go? ");
-        } else if (player.getPlayerState().equals(PlayerState.PLAYING)) {
-            System.out.print("Make Selection ");
-        }
-
+        System.out.print("Where would you like to go? ");
         String menuChoice = scanner.nextLine().toUpperCase().trim().replaceAll("\\s", "");
         return menuChoice;
 
@@ -73,6 +68,12 @@ public class MoveMenu {
                 break;
             }
         }
+        for (HallTable table : HallTable.values()) {
+            if (table.getSelectionString().equals(input)) {
+                locationsContainInput = true;
+                break;
+            }
+        }
 
         if (!locationsContainInput) {
             return false;
@@ -86,6 +87,9 @@ public class MoveMenu {
         if (menuChoice.equals(Location.EXIT.getSelectionString())) {
             player.setPlayerState(PlayerState.EXITING);
 
+        } else if (CardUtility.CheckInputIsTable(menuChoice)) {
+            System.out.println("Playin a game...");
+            player.setPlayerLocation(Location.LOBBY);
         } else {
             player.setPlayerLocation(Location.getLocation(menuChoice));
             player.setPlayerState(PlayerState.MOVING);
