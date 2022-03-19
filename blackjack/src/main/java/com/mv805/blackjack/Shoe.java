@@ -15,7 +15,7 @@ public class Shoe {
 
     public Shoe(int numberOfDecks) {
         this.fillShoe(numberOfDecks);
-        CardUtility.shuffle(10, dealingShoe);
+        CardUtility.Shuffle(10, dealingShoe);
         setCutCardInsertionBounds();
         this.addCutCard();
     }

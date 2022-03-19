@@ -9,7 +9,7 @@ public class Deck {
 
     public Deck() {
         fillDeck();
-        CardUtility.shuffle(10, deck);
+        CardUtility.Shuffle(10, deck);
     }
 
     private void fillDeck() {
