@@ -37,7 +37,7 @@ public class MoveMenuTest {
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "LOBBY", "ATM", "HALL" })
-    void testProcessMenuInput_PlayerShouldBeMoveState(Location location) {
+    void testProcessMenuInput_PlayerShouldBeInMoveState(Location location) {
         MoveMenu.processMenuInput(player, location.getSelectionString());
         assertEquals(PlayerState.MOVING, player.getPlayerState());
     }
