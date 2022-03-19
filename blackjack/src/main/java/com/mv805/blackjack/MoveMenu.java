@@ -2,6 +2,7 @@ package com.mv805.blackjack;
 
 import java.util.Scanner;
 
+//test
 public class MoveMenu {
 
     public static Scanner scanner = new Scanner(System.in);
