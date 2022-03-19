@@ -12,7 +12,7 @@ public class CardUtilityTest {
     void testShuffleThrowsException() {
         Deck deck = new Deck();
         Exception exception = assertThrows(IllegalArgumentException.class,
-                () -> CardUtility.shuffle(0, deck.getDeck()));
+                () -> CardUtility.Shuffle(0, deck.getDeck()));
         assertEquals("Can't shuffle zero times", exception.getMessage());
     }
 
@@ -20,7 +20,24 @@ public class CardUtilityTest {
     void testShuffleIsShuffled() {
         Deck deck = new Deck();
         List checkList = new ArrayList<>(deck.getDeck());
-        CardUtility.shuffle(1, checkList);
+        CardUtility.Shuffle(1, checkList);
         assertTrue(!deck.getDeck().equals(checkList));
+    }
+
+    @Test
+    void testCheckInputIsTableFalseIfNotInt() {
+        String input = "String";
+        assertFalse(CardUtility.CheckInputIsTable(input));
+    }
+
+    @Test
+    void testCheckInputIsTableTrueIfTableExists() {
+        String input;
+
+        for (int i = 0; i < HallTable.values().length; i++) {
+            input = String.valueOf(HallTable.values()[i].getSelectionString());
+            assertTrue(CardUtility.CheckInputIsTable(input));
+        }
+
     }
 }
