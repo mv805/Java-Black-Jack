@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CardUtility {
 
-    public static void shuffle(int numberOfTimes, List itemToShuffle) {
+    public static void Shuffle(int numberOfTimes, List itemToShuffle) {
         if (numberOfTimes <= 0) {
             throw new IllegalArgumentException("Can't shuffle zero times");
         }
@@ -14,6 +14,22 @@ public class CardUtility {
             Collections.shuffle(itemToShuffle);
         }
 
+    }
+
+    public static boolean CheckInputIsTable(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (Exception e) {
+            return false;
+        }
+
+        for (HallTable table : HallTable.values()) {
+            if (input.equals(table.getSelectionString())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
