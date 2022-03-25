@@ -3,7 +3,7 @@ package com.mv805.blackjack;
 import java.util.Scanner;
 
 //test
-public class MoveMenu {//master branch update
+public class MoveMenu {// test branch addition
 
     public static Scanner scanner = new Scanner(System.in);
     private static String invalidMessage = "***Invalid Input, Try Again***";
