@@ -89,7 +89,7 @@ public class MoveMenu {// test branch addition
             player.setPlayerState(PlayerState.EXITING);
 
         } else if (CardUtility.CheckInputIsTable(menuChoice)) {
-            System.out.println("Playin a game...");
+            System.out.println("Playin a game...");//remove once game logic complete
             player.setPlayerLocation(Location.LOBBY);
         } else {
             player.setPlayerLocation(Location.getLocation(menuChoice));
