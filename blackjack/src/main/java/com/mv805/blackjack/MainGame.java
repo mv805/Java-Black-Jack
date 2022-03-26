@@ -11,7 +11,9 @@ public class MainGame {
 
             switch (player.getPlayerState()) {
                 case INTRO:
+                    System.out.println("*****************************");
                     System.out.println("Welcome to Black Jack Casino!");
+                    System.out.println("*****************************");
                     player.setPlayerState(PlayerState.MOVING);
                     break;
                 case MOVING:
