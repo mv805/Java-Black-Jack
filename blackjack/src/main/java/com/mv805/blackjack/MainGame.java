@@ -19,9 +19,11 @@ public class MainGame {
                 case MOVING:
                     MoveMenu.DisplayMenu(player);
                     String menuChoice = MoveMenu.getMenuInput(player);
-                    MoveMenu.processMenuInput(player, menuChoice);
+                    MoveMenu.processMenuInputAndMovePlayer(player, menuChoice);
                     break;
                 case PLAYING:
+                    new BlackJackGame(player.getPlayerTable());
+                    player.setPlayerState(PlayerState.MOVING);
                     break;
                 case EXITING:
                     System.out.println("Goodbye!");
