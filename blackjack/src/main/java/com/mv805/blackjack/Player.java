@@ -4,6 +4,7 @@ public class Player {
 
     private int money;
     private Location location = Location.LOBBY;
+    private HallTable table;
     private PlayerState playerState = PlayerState.INTRO;
 
     public Player(int money) {
@@ -24,5 +25,13 @@ public class Player {
 
     public void setPlayerLocation(Location location) {
         this.location = location;
+    }
+
+    public void setPlayerTable(HallTable table) {
+        this.table = table;
+    }
+
+    public HallTable getPlayerTable() {
+        return table;
     }
 }
