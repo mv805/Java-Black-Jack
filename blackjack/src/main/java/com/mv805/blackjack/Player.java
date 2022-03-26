@@ -4,7 +4,7 @@ public class Player {
 
     private int money;
     private Location location = Location.LOBBY;
-    private HallTable table;
+    private HallTable table = null;
     private PlayerState playerState = PlayerState.INTRO;
 
     public Player(int money) {
