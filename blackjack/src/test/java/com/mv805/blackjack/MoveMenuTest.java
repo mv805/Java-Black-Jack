@@ -30,22 +30,22 @@ public class MoveMenuTest {
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "EXIT" })
-    void testProcessMenuInput_ShouldExit(Location location) {
-        MoveMenu.processMenuInput(player, location.getSelectionString());
+    void testProcessMenuInputAndMovePlayer_ShouldExit(Location location) {
+        MoveMenu.processMenuInputAndMovePlayer(player, location.getSelectionString());
         assertEquals(PlayerState.EXITING, player.getPlayerState());
     }
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "LOBBY", "ATM", "HALL" })
-    void testProcessMenuInput_PlayerShouldBeInMoveState(Location location) {
-        MoveMenu.processMenuInput(player, location.getSelectionString());
+    void testProcessMenuInputAndMovePlayer_PlayerShouldBeInMoveState(Location location) {
+        MoveMenu.processMenuInputAndMovePlayer(player, location.getSelectionString());
         assertEquals(PlayerState.MOVING, player.getPlayerState());
     }
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "LOBBY", "ATM", "HALL" })
-    void testProcessMenuInput_PlayerShouldRelocate(Location location) {
-        MoveMenu.processMenuInput(player, location.getSelectionString());
+    void testProcessMenuInputAndMovePlayer_PlayerShouldRelocate(Location location) {
+        MoveMenu.processMenuInputAndMovePlayer(player, location.getSelectionString());
         assertEquals(location, player.getPlayerLocation());
     }
 
