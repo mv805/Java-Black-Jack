@@ -9,13 +9,14 @@ public class Shoe {
     private List<Card> dealingShoe = new ArrayList<Card>();
     private Random random = new Random();
     private int lowerInsertionBound;
-    private final float dealerInsertEstimate = .66f;
+    private final float DEALER_INSERT_ESTIMATE = .66f;
     private int cutCardInsertioninterval;
+    private final int NUMBER_OF_SHUFFLES = 10;
     private CutCard cutCard = new CutCard();
 
     public Shoe(int numberOfDecks) {
         this.fillShoe(numberOfDecks);
-        CardUtility.Shuffle(10, dealingShoe);
+        CardUtility.Shuffle(NUMBER_OF_SHUFFLES, dealingShoe);
         setCutCardInsertionBounds();
         this.addCutCard();
     }
@@ -35,7 +36,7 @@ public class Shoe {
     }
 
     private void setCutCardInsertionBounds() {
-        lowerInsertionBound = (int) (dealerInsertEstimate * dealingShoe.size());
+        lowerInsertionBound = (int) (DEALER_INSERT_ESTIMATE * dealingShoe.size());
         cutCardInsertioninterval = dealingShoe.size() - lowerInsertionBound + 1;
     }
 
@@ -47,6 +48,10 @@ public class Shoe {
 
     private Card dealCard() {
         return dealingShoe.remove(0);
+    }
+
+    public void shuffleDeck(int numberOfTimesToShuffle) {
+        CardUtility.Shuffle(numberOfTimesToShuffle, dealingShoe);
     }
 
 }
