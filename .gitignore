@@ -19,3 +19,4 @@ blackjack/target/classes/com/mv805/blackjack/Shoe.class
 blackjack/target/test-classes/com/mv805/blackjack/AppTest.class
 blackjack/target/test-classes/com/mv805/blackjack/CardUtilityTest.class
 blackjack/target/test-classes/com/mv805/blackjack/MoveMenuTest.class
+blackjack/target/classes/com/mv805/blackjack/BlackJackGamePhase.class
