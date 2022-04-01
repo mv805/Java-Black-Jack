@@ -50,8 +50,4 @@ public class Shoe {
         return dealingShoe.remove(0);
     }
 
-    public void shuffleDeck(int numberOfTimesToShuffle) {
-        CardUtility.Shuffle(numberOfTimesToShuffle, dealingShoe);
-    }
-
 }
