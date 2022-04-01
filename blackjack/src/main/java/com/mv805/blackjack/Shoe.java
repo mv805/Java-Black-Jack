@@ -46,8 +46,8 @@ public class Shoe {
         System.out.printf("Cut Card is at index: %d%n", dealingShoe.indexOf(cutCard));
     }
 
-    private Card dealCard() {
-        return dealingShoe.remove(0);
-    }
+    // private Card dealCard() {
+    // return dealingShoe.remove(0);
+    // }
 
 }
