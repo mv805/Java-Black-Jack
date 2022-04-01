@@ -34,4 +34,16 @@ public enum HallTable {
         return selectionString;
     }
 
+    // returns a table based on the given selection string. i.e. "1" returns TABLE_1
+    public static HallTable getTableFromStringChoice(String index) {
+
+        for (HallTable table : HallTable.values()) {
+            if (table.getSelectionString().equals(index)) {
+                return table;
+            }
+        }
+
+        return null;
+    }
+
 }

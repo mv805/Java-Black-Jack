@@ -44,7 +44,7 @@ public class MoveMenu {// test branch addition
 
     }
 
-    public static void processMenuInput(Player player, String menuChoice) {
+    public static void processMenuInputAndMovePlayer(Player player, String menuChoice) {
         if (!validateInputCorrect(menuChoice)) {
             System.out.println(invalidMessage);
         } else {
@@ -54,6 +54,7 @@ public class MoveMenu {// test branch addition
 
     private static boolean validateInputCorrect(String input) {
         // input should come in trimmed and uppercase and no white spaces
+        // needs to be a choice from the location list for moving or a table for playing
         boolean locationsContainInput = false;
 
         if (input.isEmpty() || input == null) {
@@ -83,18 +84,24 @@ public class MoveMenu {// test branch addition
         return true;
     }
 
+    //exit, start a game, or move the player to a location
     public static void movePlayer(Player player, String menuChoice) {
 
         if (menuChoice.equals(Location.EXIT.getSelectionString())) {
             player.setPlayerState(PlayerState.EXITING);
 
         } else if (CardUtility.CheckInputIsTable(menuChoice)) {
-            System.out.println("Playin a game...");//remove once game logic complete
-            player.setPlayerLocation(Location.LOBBY);
+            System.out.println("STARTING GAME...");
+            movePlayerToTable(player, menuChoice);
+            player.setPlayerState(PlayerState.PLAYING);
         } else {
             player.setPlayerLocation(Location.getLocation(menuChoice));
             player.setPlayerState(PlayerState.MOVING);
         }
+    }
+
+    public static void movePlayerToTable(Player player, String menuChoice) {
+        player.setPlayerTable(HallTable.getTableFromStringChoice(menuChoice));
     }
 
 }

@@ -1,6 +1,7 @@
 package com.mv805.blackjack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -30,23 +31,38 @@ public class MoveMenuTest {
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "EXIT" })
-    void testProcessMenuInput_ShouldExit(Location location) {
-        MoveMenu.processMenuInput(player, location.getSelectionString());
+    void testProcessMenuInputAndMovePlayer_ShouldExit(Location location) {
+        MoveMenu.processMenuInputAndMovePlayer(player, location.getSelectionString());
         assertEquals(PlayerState.EXITING, player.getPlayerState());
     }
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "LOBBY", "ATM", "HALL" })
-    void testProcessMenuInput_PlayerShouldBeInMoveState(Location location) {
-        MoveMenu.processMenuInput(player, location.getSelectionString());
+    void testProcessMenuInputAndMovePlayer_PlayerShouldBeInMoveState(Location location) {
+        MoveMenu.processMenuInputAndMovePlayer(player, location.getSelectionString());
         assertEquals(PlayerState.MOVING, player.getPlayerState());
     }
 
     @ParameterizedTest
     @EnumSource(value = Location.class, names = { "LOBBY", "ATM", "HALL" })
-    void testProcessMenuInput_PlayerShouldRelocate(Location location) {
-        MoveMenu.processMenuInput(player, location.getSelectionString());
+    void testProcessMenuInputAndMovePlayer_PlayerShouldRelocate(Location location) {
+        MoveMenu.processMenuInputAndMovePlayer(player, location.getSelectionString());
         assertEquals(location, player.getPlayerLocation());
+    }
+
+    @Test
+    void testProcessMenuInputAndMovePlayer_PlayerShouldMoveToATableIfChosen() {
+        for (int i = 0; i < HallTable.values().length; i++){
+            MoveMenu.processMenuInputAndMovePlayer(player, HallTable.values()[i].getSelectionString());
+            assertEquals(HallTable.values()[i], player.getPlayerTable());
+        }
+        
+    }
+    
+    @Test
+    void testProcessMenuInputAndMovePlayer_NonValidChoiceShouldResultInNull() {
+        MoveMenu.processMenuInputAndMovePlayer(player, "0");
+        assertNull(player.getPlayerTable());
     }
 
     @Test
