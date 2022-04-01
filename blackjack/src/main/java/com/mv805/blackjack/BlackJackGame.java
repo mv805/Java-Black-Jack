@@ -10,18 +10,21 @@ public class BlackJackGame {
     private List dealersHand;
     private HallTable gameTable;
     private Shoe shoe;
-    private boolean gameOver = false;
-    private boolean cutCardFound = false;
-    private final int SHUFFLE_CYCLES = 20;
-    private BlackJackGamePhase gamePhase = BlackJackGamePhase.SHUFFLE;
+    private boolean gameOver;
+    private boolean cutCardFound;
+    private BlackJackGamePhase gamePhase;
 
     public BlackJackGame(HallTable table) {
-        this.gameTable = table;
+        
         //this.minBet = table.getTable().getMinBet();
         //this.maxBet = table.getTable().getMaxBet();
         //this.numberOfDecks = table.getTable().getNumberOfDecks();
         //this.soft17hit = table.getTable().ishitOnSoft17();
-        shoe = new Shoe(gameTable.getTable().getNumberOfDecks());
+        this.gameTable = table;
+        this.shoe = new Shoe(gameTable.getTable().getNumberOfDecks());
+        this.gameOver = false;
+        this.cutCardFound = false;
+        this.gamePhase = BlackJackGamePhase.SHUFFLE;
 
         MainGameLogic(table);
     }
@@ -31,6 +34,7 @@ public class BlackJackGame {
             switch (gamePhase) {
                 case SHUFFLE:
                     ShufflePhase();
+                    gamePhase = BlackJackGamePhase.BETTING;
                     break;
                 case BETTING:
                     break;
